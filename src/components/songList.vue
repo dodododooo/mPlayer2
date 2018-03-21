@@ -1,11 +1,11 @@
 <template>
-  <div class="song-list" @wheel.passive="songListScroll">
+  <div class="song-list" @wheel.prevent="songListScroll">
     <ul v-bind:style="{transform: 'translateY(' + newScrollTop + 'px)','transition-duration': scrollTopDuration + 'ms'}">
         <li v-for="(item, index) in songList" v-bind:key="index" @click="playThisSong(item, true)" class="list-item" v-bind:class="{'list-item-playing': currentSong.songId === item.songId}">
             <span class="list-info song-index">{{index < 9 ? '0' + (index + 1) : index + 1}}</span>
-            <span class="list-info song-speaker"><i class='iconfont icon-laba' v-show="currentSong.songId === item.songId"></i></span>
+            <span class="list-info song-speaker"><i class='iconfont icon-mlaba' v-show="currentSong.songId === item.songId"></i></span>
             <span class="list-info song-title">{{item.songTitle}}</span>
-            <span class="list-info song-add"><i class='song-add-icon iconfont icon-add' v-show="currentSong.songId != item.songId && activeTab > 0" @click.stop="playThisSong(item, false)"></i></span>
+            <span class="list-info song-add"><i class='song-add-icon iconfont icon-maddto' v-show="currentSong.songId != item.songId && activeTab > 0" @click.stop="playThisSong(item, false)"></i></span>
             <span class="list-info song-ablum" @click.stop="handlerSearch(item.album, item.source)">{{item.album}}</span>
             <span class="list-info song-artist" @click.stop="handlerSearch(item.artist, item.source)">{{item.artist}}</span>
             <span class="list-info song-delete" @click.stop="removeSong(item)" v-show="activeTab < 2"><i class='song-delete iconfont icon-delete'></i></span>

@@ -10,7 +10,7 @@ use Metowolf\Meting;
 
 $request = isset($_POST['request']) ? $_POST['request'] : die();
 //print_r($_POST);
-$source = $request['source'];
+$source = $request['source'] || 'netease';
 $action = $request['action'];
 $data = $request['data'];
 

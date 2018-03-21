@@ -4,7 +4,7 @@ import axios from 'axios'
 import Qs from 'qs'
 
 let $http = axios.create({
-  baseURL: process.env.NODE_ENV === 'development' ? 'http://192.168.8.5/mPlayer/php/' : './php/',
+  baseURL: process.env.NODE_ENV === 'development' ? 'http://192.168.8.5/mPlayer/php/' : './mplayer2/php/',
   transformRequest: [function (data) {
     return Qs.stringify(data)
   }]
@@ -22,7 +22,7 @@ const state = new Vuex.Store({
     upvoteList: [],
     searchList: [],
     showLyric: false,
-    showPlayer: true
+    showPlayer: false
   },
   mutations: {
     changeTab (state, activeTab) {

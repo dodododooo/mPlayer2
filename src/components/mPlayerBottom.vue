@@ -121,7 +121,7 @@ export default {
   methods: {
     doPlay () {
       let query = {request: {action: 'songInfo', data: this.currentSong, source: this.currentSong.source}}
-      this.$http.post('index.php', query).then(response => {
+      this.$axios.post('index.php', query).then(response => {
         let data = response.data
         this.loadImg(data.songImg)
         this.lyric = data.lyric

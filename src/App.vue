@@ -1,6 +1,6 @@
 <template>
   <div id="mplayer">
-    <transition name="fade">
+    <transition name="player-fade">
       <div id="show-mplayer" v-show="!showPlayer" v-on:click="openPlayer">
         <div class="show-player-bar" v-bind:style="{'background-image': 'url('+ currentSongImg +')'}"></div>
       </div>
@@ -55,11 +55,13 @@ export default {
 <style>
 @import './assets/iconfont.css';
 #mplayer {
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   font-family: "Helvetica neue",Helvetica,Tahoma,"lantinghei sc","Microsoft Yahei",sans-serif,monospace;
   -webkit-font-smoothing: antialiased;
+  transform:translateZ(0);
+  z-index: 99999;
 }
 #mplayer-box {
   position: absolute;
@@ -84,19 +86,19 @@ export default {
   cursor: pointer;
   overflow: hidden;
 }
-.fade-enter-active {
+.player-fade-enter-active {
   transform: translate(0, 0);
   transition: opacity 500ms ease-out 300ms, transform 500ms linear;
 }
-.fade-leave-active {
+.player-fade-leave-active {
   transform: translate(20px, 50px);
   transition: opacity 500ms ease-out 300ms, transform 300ms linear 300ms;
 }
-.fade-enter {
+.player-fade-enter {
   transform: translate(50px, 50px);
   opacity: 0;
 }
-.fade-leave-to {
+.player-fade-leave-to {
   opacity: 0;
 }
 .show-player-bar {
@@ -104,10 +106,12 @@ export default {
   width: 50px;
   background-position: center center;
   background-size: cover;
-  transition: background-image 200ms ease-out, transform 200ms ease-out;;
+  opacity: 0.5;
+  transition: all 200ms ease-out, transform 200ms ease-out;;
 }
 .show-player-bar:hover {
   transform: scale(1.5);
+  opacity: 1;
 }
 .mplayer-cover {
   position: absolute;

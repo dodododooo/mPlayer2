@@ -7,7 +7,7 @@ window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.ms
 
 var mDB = {
   indexedDB: window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB,
-  version: 2,
+  version: 1,
   DB_NAME: 'mDB',
   plsyListStore: 'playList',
   upvoteListStore: 'upvoteList',

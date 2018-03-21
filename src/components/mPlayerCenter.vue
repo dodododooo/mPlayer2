@@ -2,7 +2,7 @@
   <div class="mplayer-center" v-show="!showLyric">
     <div class="list-bar">
       <span v-show="activeTab === 0">正在播放({{currentSongIndex + '/' + playList.length}})</span>
-      <span v-show="activeTab > 0" class="list-bar-icon" v-on:click="playAll"><i class="iconfont icon-bofang"></i>播放全部</span>
+      <span v-show="activeTab > 0" class="list-bar-icon" v-on:click="playAll"><i class="iconfont icon-mbofang"></i>播放全部</span>
       <span v-show="activeTab < 2" class="list-bar-icon" v-on:click="removeAll"><i class="iconfont icon-empty"></i>清除全部</span>
     </div>
     <div class="list-box" v-bind:style="{transform: 'translateX(' + newLeft + 'px)'}">
