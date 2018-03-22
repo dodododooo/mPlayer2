@@ -114,7 +114,7 @@ export default {
       this.currentTime = this.secondsToMinutes(nowTime)
       if (this.isSeek) return
       this.progress = 100 * nowTime / this.audio.duration
-      if (this.showLyric && this.lyric.length > 0) {
+      if (this.showLyric) {
         this.lrcIndex = this.scrollLyric(nowTime)
       }
     }
@@ -216,8 +216,9 @@ export default {
       newImg.src = imgUrl
     },
     scrollLyric (time) {
-      let t = parseInt(time * 1000 + 300)
       let keys = this.lyricKeys
+      if (keys.length === 0) return
+      let t = parseInt(time * 1000 + 300)
       for (let i = keys.length - 1; i >= 0; i--) {
         if (t >= keys[i]) {
           return i
