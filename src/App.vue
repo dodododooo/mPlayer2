@@ -88,7 +88,7 @@ export default {
 }
 .player-fade-enter-active {
   transform: translate(0, 0);
-  transition: opacity 500ms ease-out 300ms, transform 500ms linear;
+  transition: opacity 500ms ease-out 300ms, transform 300ms linear;
 }
 .player-fade-leave-active {
   transform: translate(20px, 50px);
@@ -96,7 +96,7 @@ export default {
 }
 .player-fade-enter {
   transform: translate(50px, 50px);
-  opacity: 0;
+  opacity: 1;
 }
 .player-fade-leave-to {
   opacity: 0;
@@ -106,7 +106,7 @@ export default {
   width: 50px;
   background-position: center center;
   background-size: cover;
-  opacity: 0.5;
+  opacity: 0.7;
   transition: all 200ms ease-out, transform 200ms ease-out;;
 }
 .show-player-bar:hover {

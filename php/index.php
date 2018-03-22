@@ -5,15 +5,17 @@ require 'Meting.php';
 
 use Metowolf\Meting;
 
-// Initialize to netease API
-
-
 $request = isset($_POST['request']) ? $_POST['request'] : die();
-//print_r($_POST);
-$source = $request['source'] || 'netease';
+
+$source = isset($request['source']) ? $request['source'] : 'netease';
 $action = $request['action'];
 $data = $request['data'];
 
+$server = $_SERVER;
+$host = isset($server['HTTP_ORIGIN']) ? $server['HTTP_ORIGIN'] : 'none';
+$addr = isset($server['HTTP_REFERER']) ? $server['HTTP_REFERER'] : 'none';
+$query = is_array($data) ? implode('/', $data) : $data;
+file_put_contents(dirname(__FILE__)."/log/request.csv", date('Y-m-d H:i:s').",".$host.",".$addr.",".$action.",".$source.",".$query."\r\n",FILE_APPEND);
 
 $cookie = 'os=pc; osver=Microsoft-Windows-10-Professional-build-10586-64bit; appver=2.0.3.131777; channel=netease; __remember_me=true';
 
@@ -77,6 +79,8 @@ function formatLyric ($lyricStr) {
 		return [];
 	}
 }
+
+
 
 
 

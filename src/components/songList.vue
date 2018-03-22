@@ -64,7 +64,7 @@ export default {
   },
   created () {
     window.pl = {}
-    pl.addTo = this.playThisSong
+    pl.addTo = this.addToPlay
   },
   methods: {
     songListScroll (e) {
@@ -103,23 +103,27 @@ export default {
       if (this.activeTab === 0) {
         this.$store.commit('playThisSong', item)
       } else {
-        let songIndex = -1
-        let playList = this.playList
-        for (let index = 0; index < playList.length; index++) {
-          if (playList[index].songId === item.songId) {
-            songIndex = index
-            break
-          }
+        this.addToPlay(item, isPlayNow)
+      }
+    },
+    addToPlay (item, isPlayNow) {
+      if (item.songId === this.currentSong.songId) return
+      let songIndex = -1
+      let playList = this.playList
+      for (let index = 0; index < playList.length; index++) {
+        if (playList[index].songId === item.songId) {
+          songIndex = index
+          break
         }
-        if (songIndex > -1) {
-          if (isPlayNow) this.$store.commit('playThisSong', playList[songIndex])
-        } else {
-          mDB.save('playList', item, (id) => {
-            item.id = id
-            this.$store.commit('addSong', {list: 'playList', data: item})
-            if (isPlayNow) this.$store.commit('playThisSong', item)
-          })
-        }
+      }
+      if (songIndex > -1) {
+        if (isPlayNow) this.$store.commit('playThisSong', playList[songIndex])
+      } else {
+        mDB.save('playList', item, (id) => {
+          item.id = id
+          this.$store.commit('addSong', {list: 'playList', data: item})
+          if (isPlayNow) this.$store.commit('playThisSong', item)
+        })
       }
     },
     handlerSearch (keyWords, source) {
