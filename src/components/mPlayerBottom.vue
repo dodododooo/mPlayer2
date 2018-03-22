@@ -3,6 +3,7 @@
   <div class="mplayer-lrcs" v-show="showLyric">
     <ul class="lyric-rows" v-bind:style="{transform: 'translateY(' + (-lrcIndex * 25) + 'px)'}">
       <li class="lyric-row" v-for="i in 4" v-bind:key="i"></li>
+      <li class="lyric-row" v-show="lyric.length === 0">暂无歌词</li>
       <li class="lyric-row" v-for="(row, index) in lyric" v-bind:key="index" v-bind:class="{'active-lyric': lyricKeys[lrcIndex] === index}">{{row}}</li>
     </ul>
   </div>
