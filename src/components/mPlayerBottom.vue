@@ -114,8 +114,9 @@ export default {
       this.currentTime = this.secondsToMinutes(nowTime)
       if (this.isSeek) return
       this.progress = 100 * nowTime / this.audio.duration
-      if (this.showLyric && this.lyric.length === 0) return
-      this.lrcIndex = this.scrollLyric(nowTime)
+      if (this.showLyric && this.lyric.length === 0) {
+        this.lrcIndex = this.scrollLyric(nowTime)
+      }
     }
   },
   methods: {
