@@ -122,11 +122,16 @@ export default {
   background-position: center center;
   background-size: cover;
   filter: blur(100px);
-  transition: background-image 200ms ease-out;
+  transition: background-image 300ms ease-out;
 }
 .cover-color {
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,.3);
+}
+@media screen and (max-width: 767px) {
+  #mplayer {
+    display: none;
+  }
 }
 </style>

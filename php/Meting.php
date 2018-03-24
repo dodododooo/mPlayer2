@@ -159,7 +159,7 @@ class Meting
                 'body'   => array(
                     's'      => $keyword,
                     'type'   => isset($option['type']) ? $option['type'] : 1,
-                    'limit'  => isset($option['limit']) ? $option['limit'] : 30,
+                    'limit'  => isset($option['limit']) ? $option['limit'] : 100,
                     'total'  => 'true',
                     'offset' => isset($option['page']) && isset($option['limit']) ? ($option['page'] - 1) * $option['limit'] : 0,
                 ),
@@ -174,7 +174,7 @@ class Meting
                 'body'   => array(
                     'format'   => 'json',
                     'p'        => isset($option['page']) ? $option['page'] : 1,
-                    'n'        => isset($option['limit']) ? $option['limit'] : 30,
+                    'n'        => isset($option['limit']) ? $option['limit'] : 100,
                     'w'        => $keyword,
                     'aggr'     => 1,
                     'lossless' => 1,
@@ -193,7 +193,7 @@ class Meting
                         'key'      => $keyword,
                         'pagingVO' => array(
                             'page'     => isset($option['page']) ? $option['page'] : 1,
-                            'pageSize' => isset($option['limit']) ? $option['limit'] : 30,
+                            'pageSize' => isset($option['limit']) ? $option['limit'] : 100,
                         ),
                     ),
                     'r' => 'mtop.alimusic.search.searchservice.searchsongs',
@@ -208,7 +208,7 @@ class Meting
                 'url'    => 'http://ioscdn.kugou.com/api/v3/search/song',
                 'body'   => array(
                     'iscorrect' => 1,
-                    'pagesize'  => isset($option['limit']) ? $option['limit'] : 30,
+                    'pagesize'  => isset($option['limit']) ? $option['limit'] : 100,
                     'plat'      => 2,
                     'tag'       => 1,
                     'sver'      => 5,
@@ -232,7 +232,7 @@ class Meting
                     'page_no'   => isset($option['page']) ? $option['page'] : 1,
                     'query'     => $keyword,
                     'version'   => '11.0.2',
-                    'page_size' => isset($option['limit']) ? $option['limit'] : 30,
+                    'page_size' => isset($option['limit']) ? $option['limit'] : 100,
                 ),
                 'format' => 'result.song_info.song_list',
             );

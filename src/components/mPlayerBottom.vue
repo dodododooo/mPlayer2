@@ -222,7 +222,7 @@ export default {
     scrollLyric (time) {
       let keys = this.lyricKeys
       if (keys.length === 0) return
-      let t = parseInt(time * 1000 + 300)
+      let t = parseInt(time * 1000 + 500)
       for (let i = keys.length - 1; i >= 0; i--) {
         if (t >= keys[i]) {
           return i
