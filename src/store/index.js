@@ -58,6 +58,7 @@ const state = new Vuex.Store({
   },
   actions: {
     searchSong (context, payload) {
+      context.commit('searchSong', [])
       let query = { request: { action: 'search', data: payload.keyWords, source: payload.source } }
       $http.post('index.php', query).then(response => {
         let data = response.data

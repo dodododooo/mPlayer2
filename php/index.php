@@ -63,7 +63,7 @@ function formatList ($data) {
 }
 
 function formatLyric ($lyricStr) {
-	$reg = "/[0-9]{2}[:][0-9]{2}\.[0-9]*\].+(\r\n|\n)/im";
+	$reg = "/[0-9]{2}[:][0-9]{2}\.[0-9]*\].+(\r\n|\n|)/im";
 	preg_match_all($reg, $lyricStr, $result);
 	$rows = $result[0];
 	if (count($rows) > 0) {

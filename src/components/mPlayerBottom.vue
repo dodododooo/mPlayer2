@@ -141,6 +141,9 @@ export default {
           ctrlIndex = direction === 0 ? (currentIndex - 1 < 0 ? totalSong - 1 : currentIndex - 1) : (currentIndex + 1 > totalSong - 1 ? 0 : currentIndex + 1)
         } else {
           ctrlIndex = Math.floor(Math.random() * totalSong)
+          while (ctrlIndex === currentIndex) {
+            ctrlIndex = Math.floor(Math.random() * totalSong)
+          }
         }
         this.$store.commit('playThisSong', this.playList[ctrlIndex])
       } else {
