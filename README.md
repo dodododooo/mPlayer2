@@ -56,6 +56,10 @@ http://dodododooo.com/#/music
 ### 浏览器支持
 支持 Chrome、firefox、Edge 等现代浏览器，IE浏览器下背景图片滤镜功能未作兼容。
 
+### LastFM scrobble
+记录歌曲播放记录
+查看地址： https://www.last.fm/zh/user/dodododooo
+
 ### 鸣谢
 （厚颜无耻地）特别感谢 @metowolf、网易云音乐、QQ音乐、虾米、酷狗、百度音乐的大力支持！！！！
 
