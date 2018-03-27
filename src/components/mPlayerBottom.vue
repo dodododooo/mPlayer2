@@ -130,7 +130,6 @@ export default {
       this.audio.pause()
       this.isSeek = true
       this.progress = 0
-      this.currentTime = this.duration = '00:00'
       let query = {request: {action: 'songInfo', data: this.currentSong, source: this.currentSong.source}}
       this.$axios.post('index.php', query).then(response => {
         let data = response.data
