@@ -35,6 +35,7 @@ if ($action === 'songInfo') {
 		'songUrl' => $songUrl,
 		'lyric' => $lyric,
 	);
+	
 } else {
 	$data = json_decode($API->format(1)->$action($data), true);
 	$result = array();
@@ -42,7 +43,6 @@ if ($action === 'songInfo') {
 		$result[$index] = formatList($value);
 	}
 }
-
 
 echo json_encode($result);
 
@@ -52,7 +52,7 @@ function formatList ($data) {
 	$arr = array(
             'songId'     => $data['id'],
             'songTitle'  => $data['name'],
-            'artist'     => count($data['artist']) > 1 ? $data['artist'][0] : implode('/', $data['artist']),
+            'artist'     => count($data['artist']) > 1 ? implode('/', $data['artist']) : $data['artist'][0],
 			'urlId'      => $data['url_id'],
             'album'      => $data['album'],
 			'lyricId'    => $data['lyric_id'],
@@ -79,7 +79,6 @@ function formatLyric ($lyricStr) {
 		return [];
 	}
 }
-
 
 
 

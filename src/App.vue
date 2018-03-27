@@ -91,7 +91,7 @@ export default {
   transition: opacity 500ms ease-out 300ms, transform 300ms linear;
 }
 .player-fade-leave-active {
-  transform: translate(20px, 50px);
+  transform: translate(10px, 50px);
   transition: opacity 500ms ease-out 300ms, transform 300ms linear 300ms;
 }
 .player-fade-enter {

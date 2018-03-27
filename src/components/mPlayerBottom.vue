@@ -58,7 +58,8 @@ export default {
       duration: '00:00',
       progress: 0,
       playMode: 2, // 播放模式：1，单曲循环；2，列表循环；3，随机播放
-      isSeek: false
+      isSeek: false,
+      scrobble: false
     }
   },
   computed: {
@@ -77,7 +78,7 @@ export default {
     })
   },
   watch: {
-    currentSong: function (newVal) {
+    currentSong: function (newVal, oldVval) {
       this.lrcIndex = 0
       if (!newVal.songId) {
         this.reset()
@@ -113,28 +114,34 @@ export default {
     this.audio.ontimeupdate = () => {
       let nowTime = this.audio.currentTime
       this.currentTime = this.secondsToMinutes(nowTime)
-      if (this.isSeek) return
-      this.progress = 100 * nowTime / this.audio.duration
+      if (!this.isSeek) {
+        this.progress = 100 * nowTime / this.audio.duration
+      }
       if (this.showLyric) {
         this.lrcIndex = this.scrollLyric(nowTime)
+      }
+      if (!this.scrobble && nowTime > 30) {
+        this.doScrobble()
       }
     }
   },
   methods: {
     doPlay () {
+      this.progress = 0
       let query = {request: {action: 'songInfo', data: this.currentSong, source: this.currentSong.source}}
       this.$axios.post('index.php', query).then(response => {
         let data = response.data
         this.loadImg(data.songImg)
         this.lyric = data.lyric
         this.audio.src = data.songUrl
+        this.scrobble = false
       })
     },
     playCtrl (direction) {
       let song = this.currentSong
       let totalSong = this.playList.length
       let currentIndex = this.playList.indexOf(song)
-      if (totalSong > 0) {
+      if (totalSong > 1) {
         if (!song.songId) return this.$store.commit('playThisSong', this.playList[0])
         let ctrlIndex
         if (this.playMode < 3) {
@@ -146,6 +153,9 @@ export default {
           }
         }
         this.$store.commit('playThisSong', this.playList[ctrlIndex])
+      } else if (totalSong === 1) {
+        this.$store.commit('playThisSong', {})
+        this.$store.commit('playThisSong', this.playList[0])
       } else {
         this.reset()
       }
@@ -237,6 +247,15 @@ export default {
       SS = SS < 10 ? (SS = '0' + SS) : SS
       let time = MM + ':' + SS
       return time
+    },
+    doScrobble () {
+      if (this.scrobble) return
+      let query = {request: {data: this.currentSong}}
+      this.$axios.post('scrobble.php', query).then(response => {
+        let data = response.data
+        console.log(data)
+        this.scrobble = true
+      })
     },
     reset () {
       this.currentTime = '00:00'
