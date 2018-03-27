@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     showInfo () {
-      console.info('欢迎使用mPlayer!')
+      console.info('%c欢迎使用mPlayer2!\nVersion:1.0.0\n作者:http://dodododooo.com\nGithub：https://github.com/dodododooo/mPlayer2', 'color:red')
     },
     openPlayer () {
       this.$store.commit('showPlayer', true)

@@ -250,11 +250,11 @@ export default {
     },
     doScrobble () {
       if (this.scrobble) return
+      this.scrobble = true
       let query = {request: {data: this.currentSong}}
       this.$axios.post('scrobble.php', query).then(response => {
         let data = response.data
         console.log(data)
-        this.scrobble = true
       })
     },
     reset () {
