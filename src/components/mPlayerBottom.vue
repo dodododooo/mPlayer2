@@ -127,6 +127,8 @@ export default {
   },
   methods: {
     doPlay () {
+      this.audio.pause()
+      this.isSeek = true
       this.progress = 0
       let query = {request: {action: 'songInfo', data: this.currentSong, source: this.currentSong.source}}
       this.$axios.post('index.php', query).then(response => {
@@ -135,6 +137,7 @@ export default {
         this.lyric = data.lyric
         this.audio.src = data.songUrl
         this.scrobble = false
+        this.isSeek = false
       })
     },
     playCtrl (direction) {
