@@ -57,7 +57,7 @@ http://dodododooo.com/#/music
 支持 Chrome、firefox、Edge 等现代浏览器，IE浏览器下背景图片滤镜功能未作兼容。
 
 ### LastFM scrobble
-记录歌曲播放记录
+记录歌曲播放记录到LastFM, 每小时同步一次
 查看地址： https://www.last.fm/zh/user/dodododooo
 
 ### 鸣谢
