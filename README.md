@@ -58,6 +58,7 @@ http://dodododooo.com/#/music
 
 ### LastFM scrobble
 记录歌曲播放记录到LastFM, 每小时同步一次
+
 查看地址： https://www.last.fm/zh/user/dodododooo
 
 ### 鸣谢
