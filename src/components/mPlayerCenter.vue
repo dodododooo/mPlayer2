@@ -12,7 +12,7 @@
         v-bind:key="index"
         v-bind:class="index === 0 ? 'song' : (index === 1 ? 'upvote' : 'search') + '-list-box'">
         <v-list v-bind:songList="item" v-on:removeListSong="removeSong"></v-list>
-        <div class="list-tip" v-show="item.length === 0">列表为空</div>
+        <div class="list-tip" v-show="item.length === 0">{{(activeTab === 2 && isLoading) ? '加载中。。。' : '列表为空'}}</div>
       </div>
     </div>
   </div>
@@ -47,7 +47,8 @@ export default {
       upvoteList: 'upvoteList',
       searchList: 'searchList',
       currentSong: 'currentSong',
-      showLyric: 'showLyric'
+      showLyric: 'showLyric',
+      isLoading: 'isLoading'
     }),
     list () {
       return [this.playList, this.upvoteList, this.searchList]
@@ -127,6 +128,7 @@ export default {
       let list
       if (this.activeTab === 0) {
         list = 'playList'
+        this.$store.commit('playThisSong', {})
       } else if (this.activeTab === 1) {
         list = 'upvoteList'
       }

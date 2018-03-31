@@ -6,8 +6,8 @@
             <span class="list-info song-speaker"><i class='iconfont icon-mlaba' v-show="currentSong.songId === item.songId"></i></span>
             <span class="list-info song-title">{{item.songTitle}}</span>
             <span class="list-info song-add"><i class='song-add-icon iconfont icon-maddto' v-show="currentSong.songId != item.songId && activeTab > 0" @click.stop="playThisSong(item, false)"></i></span>
-            <span class="list-info song-ablum" @click.stop="handlerSearch(item.album, item.source)">{{item.album}}</span>
-            <span class="list-info song-artist" @click.stop="handlerSearch(item.artist, item.source)">{{item.artist}}</span>
+            <span class="list-info song-ablum" :title="item.album" @click.stop="handlerSearch(item.album, item.source)">{{item.album}}</span>
+            <span class="list-info song-artist" :title="item.artist" @click.stop="handlerSearch(item.artist, item.source)">{{item.artist}}</span>
             <span class="list-info song-delete" @click.stop="removeSong(item)" v-show="activeTab < 2"><i class='song-delete iconfont icon-delete'></i></span>
         </li>
     </ul>
@@ -63,8 +63,9 @@ export default {
     }
   },
   created () {
-    window.pl = {}
+    let pl = {}
     pl.addTo = this.addToPlay
+    window.pl = pl
   },
   methods: {
     songListScroll (e) {
@@ -126,8 +127,8 @@ export default {
         })
       }
     },
-    handlerSearch (keyWords, source) {
-      this.$store.dispatch('searchSong', {keyWords: keyWords, source: source})
+    handlerSearch (data, source) {
+      this.$store.dispatch('searchSong', { action: 'search', data: data, source: source })
       this.$store.commit('changeTab', 2)
     },
     removeSong (item) {

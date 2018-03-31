@@ -81,6 +81,7 @@ export default {
     currentSong: function (newVal, oldVval) {
       this.lrcIndex = 0
       if (!newVal.songId) {
+        this.audio.src = '0'
         this.reset()
       } else {
         if (this.upvoteList.some(item => (item.songId === newVal.songId))) {
@@ -160,7 +161,7 @@ export default {
         this.$store.commit('playThisSong', {})
         this.$store.commit('playThisSong', this.playList[0])
       } else {
-        this.reset()
+        this.$store.commit('playThisSong', {})
       }
     },
     doPause () {
@@ -267,6 +268,7 @@ export default {
       this.$store.commit('doUpvote', false)
       this.progress = 0
       this.lyric = ''
+      this.$store.commit('setSongImg', require('../assets/logo.jpg'))
     }
   }
 }

@@ -22,7 +22,8 @@ const state = new Vuex.Store({
     upvoteList: [],
     searchList: [],
     showLyric: false,
-    showPlayer: false
+    showPlayer: false,
+    isLoading: false
   },
   mutations: {
     changeTab (state, activeTab) {
@@ -54,13 +55,18 @@ const state = new Vuex.Store({
     },
     showPlayer (state, payload) {
       state.showPlayer = payload
+    },
+    isLoading (state, payload) {
+      state.isLoading = payload
     }
   },
   actions: {
     searchSong (context, payload) {
       context.commit('searchSong', [])
-      let query = { request: { action: 'search', data: payload.keyWords, source: payload.source } }
+      context.commit('isLoading', true)
+      let query = { request: { action: payload.action, data: payload.data, source: payload.source } }
       $http.post('index.php', query).then(response => {
+        context.commit('isLoading', false)
         let data = response.data
         context.commit('searchSong', data)
       })

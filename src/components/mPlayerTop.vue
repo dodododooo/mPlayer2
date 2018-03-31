@@ -6,8 +6,8 @@
       @click="changeTab(index)">{{item}}</div>
     <div class="top-bar-search">
       <i v-on:click="isShowResList = !isShowResList" class="res-btn res-icon iconfont" v-bind:class="'icon-' + currentSource"></i>
-      <div v-show="isShowResList" class="res-list">
-        <ul>
+      <div class="res-list">
+        <ul v-show="isShowResList && !focusStatus">
           <li v-for="item in sourceList"
             v-bind:key="item"
             class="res-icon res-icon-list"
@@ -15,10 +15,24 @@
             <i class="iconfont" v-bind:class="'icon-' + item"></i>
           </li>
         </ul>
+        <ul v-show="focusStatus && keyWords === ''">
+          <li v-for="(item, index) in suggestList"
+          v-bind:key="index"
+          class="suggest-list"
+          v-on:mousedown="toSearch('playlist', item.id, 'netease')"
+          ><i class="iconfont icon-liebiao"></i>{{item.text}}</li>
+        </ul>
       </div>
-      <input v-model="keyWords" class="search-input" type="text" placeholder="发现音乐，发现美好生活">
-      <i class="search-icon iconfont icon-sousuo"
-        v-on:click="toSearch"></i>
+      <input
+        v-model="keyWords"
+        @blur="focusStatus = false"
+        @focus="(focusStatus = true) && (isShowResList = false)"
+        @keyup.enter="toSearch('search', keyWords, currentSource)"
+        class="search-input"
+        type="text"
+        autocomplete="off"
+        placeholder="发现音乐，发现美好生活">
+      <i class="search-icon iconfont icon-sousuo" v-on:click="toSearch('search', keyWords, currentSource)"></i>
     </div>
     <div class="top-bar-btn" v-on:click="hidePlayer">
       <i class="top-bar-icon iconfont icon-delete"></i>
@@ -35,7 +49,18 @@ export default {
       keyWords: '',
       isShowResList: false,
       currentSource: 'netease',
-      sourceList: ['netease', 'xiami', 'tencent', 'kugou', 'baidu']
+      sourceList: ['netease', 'xiami', 'tencent', 'kugou', 'baidu'],
+      focusStatus: false,
+      suggestList: [
+        {id: 490778650, text: '推荐音乐榜', source: 'netease'},
+        {id: 19723756, text: '云音乐飙升榜', source: 'netease'},
+        {id: 3778678, text: '云音乐热歌榜', source: 'netease'},
+        {id: 3779629, text: '云音乐新歌榜', source: 'netease'},
+        {id: 60198, text: '美国Billboard周榜', source: 'netease'},
+        {id: 11641012, text: 'iTunes榜', source: 'netease'},
+        {id: 112504, text: '中国TOP排行榜（港台榜）', source: 'netease'},
+        {id: 64016, text: '中国TOP排行榜（内地榜）', source: 'netease'},
+      ]
     }
   },
   computed: {
@@ -55,9 +80,9 @@ export default {
       this.currentSource = newRes
       this.isShowResList = false
     },
-    toSearch () {
-      if (this.keyWords) {
-        this.$store.dispatch('searchSong', {keyWords: this.keyWords, source: this.currentSource})
+    toSearch (action, data, source) {
+      if (data) {
+        this.$store.dispatch('searchSong', { action: action, data: data, source: source })
         this.$store.commit('changeTab', 2)
         this.$store.commit('showLyric', false)
       }
@@ -112,13 +137,32 @@ export default {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-.res-icon {
+.suggest-list, .res-icon {
   height: 30px;
   width: 30px;
   line-height: 30px;
   text-align: center;
   color: #aaa;
   cursor: pointer;
+}
+.suggest-list {
+  width: 300px;
+  font-size: 15px;
+  color: #ccc;
+  text-align: left;
+  text-shadow: 0px 15px 20px #000;
+}
+.suggest-list .icon-liebiao{
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  margin-right: 8px;
+  text-align: center;
+}
+.suggest-list:hover {
+  color: #fff;
+  background-color: rgba(0, 0, 0, .5);
 }
 .res-icon:hover {
   color: #ddd;
@@ -130,6 +174,7 @@ export default {
   position: absolute;
   top: 40px;
   left: 0;
+  background-color: rgba(0, 0, 0, .5);
   border: 1px solid rgba(221, 221, 221, 0.26);
   border-radius: 5px;
   z-index: 99;
