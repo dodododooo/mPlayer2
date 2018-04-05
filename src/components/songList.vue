@@ -183,6 +183,7 @@ export default {
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
+  vertical-align: top;
 }
 .iconfont {
   font-size: 12px;
