@@ -59,7 +59,7 @@ export default {
         {id: 60198, text: '美国Billboard周榜', source: 'netease'},
         {id: 11641012, text: 'iTunes榜', source: 'netease'},
         {id: 112504, text: '中国TOP排行榜（港台榜）', source: 'netease'},
-        {id: 64016, text: '中国TOP排行榜（内地榜）', source: 'netease'},
+        {id: 64016, text: '中国TOP排行榜（内地榜）', source: 'netease'}
       ]
     }
   },

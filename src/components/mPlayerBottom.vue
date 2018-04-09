@@ -95,6 +95,7 @@ export default {
   },
   created () {
     this.audio.autoplay = true
+    this.audio.loop = false
     this.audio.onplay = () => {
       this.isPlaying = true
     }
@@ -103,7 +104,12 @@ export default {
     }
     this.audio.onended = () => {
       this.isPlaying = false
-      this.playCtrl(1)
+      this.scrobble = false
+      if (this.playMode ===1) {
+        this.audio.play()
+      } else {
+        this.playCtrl(1)
+      }
     }
     this.audio.onpause = () => {
       this.isPlaying = false
@@ -174,7 +180,7 @@ export default {
     },
     changeMode () {
       this.playMode += 1
-      this.playMode > 3 ? (this.playMode = 1) && (this.audio.loop = true) : this.audio.loop = false
+      this.playMode > 3 ? this.playMode = 1 : null
     },
     doUpvote () {
       let song = this.currentSong
