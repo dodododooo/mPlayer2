@@ -81,7 +81,7 @@ export default {
     currentSong: function (newVal, oldVval) {
       this.lrcIndex = 0
       if (!newVal.songId) {
-        this.audio.src = '0'
+        this.audio.src = ''
         this.reset()
       } else {
         if (this.upvoteList.some(item => (item.songId === newVal.songId))) {

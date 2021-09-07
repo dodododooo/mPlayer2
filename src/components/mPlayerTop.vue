@@ -15,13 +15,13 @@
             <i class="iconfont" v-bind:class="'icon-' + item"></i>
           </li>
         </ul>
-        <ul v-show="focusStatus && keyWords === ''">
+        <!-- <ul v-show="focusStatus && keyWords === ''">
           <li v-for="(item, index) in suggestList"
           v-bind:key="index"
           class="suggest-list"
           v-on:mousedown="toSearch('playlist', item.id, 'netease')"
           ><i class="iconfont icon-liebiao"></i>{{item.text}}</li>
-        </ul>
+        </ul> -->
       </div>
       <input
         v-model="keyWords"
@@ -49,7 +49,7 @@ export default {
       keyWords: '',
       isShowResList: false,
       currentSource: 'netease',
-      sourceList: ['netease', 'xiami', 'tencent', 'kugou', 'baidu'],
+      sourceList: ['netease', 'tencent', 'kugou'],
       focusStatus: false,
       suggestList: [
         {id: 490778650, text: '推荐音乐榜', source: 'netease'},
@@ -194,6 +194,7 @@ export default {
   border-left: none;
   border-right: none;
   background-color: transparent;
+  font-size: 14px;
 }
 .search-input:focus {
     outline: none;

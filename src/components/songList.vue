@@ -1,7 +1,7 @@
 <template>
   <div class="song-list" @wheel.prevent="songListScroll">
     <ul v-bind:style="{transform: 'translateY(' + newScrollTop + 'px)','transition-duration': scrollTopDuration + 'ms'}">
-        <li v-for="(item, index) in songList" v-bind:key="index" @click="playThisSong(item, true)" class="list-item" v-bind:class="{'list-item-playing': currentSong.songId === item.songId}">
+        <li v-for="(item, index) in songList" v-bind:key="index" @click.right="copy(item)" @click="playThisSong(item, true)" class="list-item" v-bind:class="{'list-item-playing': currentSong.songId === item.songId}">
             <span class="list-info song-index">{{index < 9 ? '0' + (index + 1) : index + 1}}</span>
             <span class="list-info song-speaker"><i class='iconfont icon-mlaba' v-show="currentSong.songId === item.songId"></i></span>
             <span class="list-info song-title">{{item.songTitle}}</span>
@@ -30,8 +30,8 @@ export default {
   data () {
     return {
       newScrollTop: 0,
-      scrollBarDuration: 2500,
-      scrollTopDuration: 2500
+      scrollBarDuration: 1600,
+      scrollTopDuration: 1600
     }
   },
   computed: {
@@ -75,7 +75,7 @@ export default {
       this.handlerScrollMvoe(handerNewScrollTop)
     },
     handlerScrollMvoe (handerNewScrollTop) {
-      this.scrollTopDuration = 2500
+      this.scrollTopDuration = 1600
       this.newScrollTop = handerNewScrollTop > 0 ? 0 : (handerNewScrollTop < 240 - this.songList.length * 30 ? 240 - this.songList.length * 30 : handerNewScrollTop)
     },
     handlerScrollTo (e) {
@@ -94,7 +94,7 @@ export default {
         this.handlerScrollMvoe(handerNewScrollTop)
       }
       document.onmouseup = () => {
-        this.scrollBarDuration = 2500
+        this.scrollBarDuration = 1600
         document.onmousemove = null
         document.onmouseup = null
       }
@@ -133,6 +133,20 @@ export default {
     },
     removeSong (item) {
       this.$emit('removeListSong', item)
+    },
+    copy (item) {
+      if (location.host !== 'dodododooo.com') return
+      let transfer = document.createElement('input')
+      document.body.appendChild(transfer)
+      transfer.value = JSON.stringify(item) // 这里表示想要复制的内容
+      transfer.focus()
+      transfer.select()
+      if (document.execCommand('copy')) {
+        document.execCommand('copy')
+      }
+      transfer.blur()
+      console.log('复制成功')
+      document.body.removeChild(transfer)
     }
   }
 }
