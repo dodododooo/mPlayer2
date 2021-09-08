@@ -30,12 +30,12 @@ export default {
   },
   data () {
     return {
-      songImg: require('./assets/logo.jpg')
+      songImg: 'https://dodododooo.com/mplayer2/logo.jpg'
     }
   },
   computed: {
     currentSongImg () {
-      return this.$store.state.currentSongImg || require('./assets/logo.jpg')
+      return this.$store.state.currentSongImg || 'https://dodododooo.com/mplayer2/logo.jpg'
     },
     showPlayer () {
       return this.$store.state.showPlayer

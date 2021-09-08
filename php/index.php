@@ -10,6 +10,7 @@ $request = isset($_POST['request']) ? $_POST['request'] : die();
 $source = isset($request['source']) ? $request['source'] : 'netease';
 $action = $request['action'];
 $data = $request['data'];
+$format = isset($request['format']) ? 8 : 9;
 
 $server = $_SERVER;
 $host = isset($server['HTTP_ORIGIN']) ? $server['HTTP_ORIGIN'] : 'none';
@@ -38,10 +39,14 @@ if ($action === 'songInfo') {
 	
 } else {
 	$data = json_decode($API->format(1)->$action($data), true);
-	$result = array();
-	foreach ($data as $index => $value) {
-		$result[$index] = formatList($value);
-	}
+  if ($format == 8) {
+    $result = $data;
+  } else {
+    $result = array();
+    foreach ($data as $index => $value) {
+      $result[$index] = formatList($value);
+    }
+  }
 }
 
 echo json_encode($result);
@@ -53,9 +58,9 @@ function formatList ($data) {
             'songId'     => $data['id'],
             'songTitle'  => $data['name'],
             'artist'     => count($data['artist']) > 1 ? implode('/', $data['artist']) : $data['artist'][0],
-			'urlId'      => $data['url_id'],
+            'urlId'      => $data['url_id'],
             'album'      => $data['album'],
-			'lyricId'    => $data['lyric_id'],
+            'lyricId'    => $data['lyric_id'],
             'songImg'    => $data['pic_id'],
             'source'     => $data['source'],
         );

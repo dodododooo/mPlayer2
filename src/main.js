@@ -24,4 +24,3 @@ var mplayer = new Vue({
   render: h => h(mPlayer)
 })
 
-window.mplayer = mplayer

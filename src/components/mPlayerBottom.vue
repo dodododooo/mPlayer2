@@ -73,7 +73,7 @@ export default {
       isUpvote: 'isUpvote',
       showLyric: 'showLyric',
       currentSongImg (state) {
-        return state.currentSongImg || require('../assets/logo.jpg')
+        return state.currentSongImg || 'https://dodododooo.com/mplayer2/logo.jpg'
       }
     })
   },
@@ -235,7 +235,7 @@ export default {
         this.$store.commit('setSongImg', imgUrl)
       }
       newImg.onerror = () => {
-        this.$store.commit('setSongImg', require('../assets/logo.jpg'))
+        this.$store.commit('setSongImg', 'https://dodododooo.com/mplayer2/logo.jpg')
       }
       newImg.src = imgUrl
     },
@@ -274,7 +274,7 @@ export default {
       this.$store.commit('doUpvote', false)
       this.progress = 0
       this.lyric = ''
-      this.$store.commit('setSongImg', require('../assets/logo.jpg'))
+      this.$store.commit('setSongImg', 'https://dodododooo.com/mplayer2/logo.jpg')
     }
   }
 }
