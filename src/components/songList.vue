@@ -135,10 +135,10 @@ export default {
       this.$emit('removeListSong', item)
     },
     copy (item) {
-      if (location.host !== 'dodododooo.com') return
+      // if (location.host !== 'dodododooo.com') return
       let transfer = document.createElement('input')
       document.body.appendChild(transfer)
-      transfer.value = JSON.stringify(item) // 这里表示想要复制的内容
+      transfer.value = escape(JSON.stringify(item)) // 这里表示想要复制的内容
       transfer.focus()
       transfer.select()
       if (document.execCommand('copy')) {
