@@ -25,35 +25,29 @@ http://dodododooo.com/#/music
  **免编译远程调用**
 
  页面直接引用远程js,css文件
- 
- ``` <html> ```
-
- ``` <head> ```
-
- ``` <meta charset="UTF-8"> ```
-
- ``` <link rel=stylesheet type=text/css href="https://dodododooo.com/mplayer2/remote/css/app-mplayer.css"></link> ```
- 
- ``` </head> ```
-
- ``` <body> ```
-
- ``` <script type=text/javascript src=https://dodododooo.com/mplayer2/remote/js/app-mplayer.js></script> ```
- 
- ``` </body> ```
- 
- ``` </html> ```
-
-
+ ```html
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel=stylesheet type=text/css href="https://dodododooo.com/mplayer2/remote/css/app-mplayer.css"></link>
+  </head>
+  <body>
+    <script type=text/javascript src=https://dodododooo.com/mplayer2/remote/js/app-mplayer.js></script>
+  </body>
+</html>
+```
 **方法调用**
+```javascript
+pl.addTo($.parseJSON(songObject),isPlay) //添加歌曲到列表
+// 参数1： songObject = {songId: 1773698125, songTitle: "定西", artist: "李志", urlId: 1773698125, album: "1701", lyricId: 1773698125, songImg: 1773698125, source: 'xiami'}
 
-  ```pl.addTo($.parseJSON(songObject),isPlay) //添加歌曲到列表```
-
-参数1：  ```songObject = {songId: 1773698125, songTitle: "定西", artist: "李志", urlId: 1773698125, album: "1701", lyricId: 1773698125, songImg: 1773698125, source: 'xiami'}```
-
-参数2：  ```isPlay //true 添加并播放，false 添加到列表```
+// 参数2： isPlay //true 添加并播放，false 添加到列表
 
 ```
+
+
+
+```bash
 2021-09-11 更新  
 新增页面音乐卡片
   使用方法： 
