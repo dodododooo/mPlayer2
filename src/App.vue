@@ -53,6 +53,7 @@ export default {
 </script>
 
 <style>
+@import './assets/playerTool.css';
 @import './assets/iconfont.css';
 #mplayer {
   position: fixed;

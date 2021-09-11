@@ -80,11 +80,13 @@ export default {
   watch: {
     currentSong: function (newVal, oldVval) {
       this.lrcIndex = 0
-      if (!newVal.songId) {
+      let {songId, source} = newVal
+      this.dispatchEvent(songId ? `${source}_${songId}` : '')
+      if (!songId) {
         this.audio.src = ''
         this.reset()
       } else {
-        if (this.upvoteList.some(item => (item.songId === newVal.songId))) {
+        if (this.upvoteList.some(item => (item.songId === songId))) {
           this.$store.commit('doUpvote', true)
         } else {
           this.$store.commit('doUpvote', false)
@@ -105,7 +107,7 @@ export default {
     this.audio.onended = () => {
       this.isPlaying = false
       this.scrobble = false
-      if (this.playMode ===1) {
+      if (this.playMode === 1) {
         this.audio.play()
       } else {
         this.playCtrl(1)
@@ -131,8 +133,17 @@ export default {
         this.doScrobble()
       }
     }
+    window.pl = window.pl || {}
+    window.pl.doPause = this.doPause
   },
   methods: {
+    dispatchEvent (songHashId) {
+      window.mPlayerCurrentSong = songHashId
+      let event = new CustomEvent('mPlayerChangeSong', {
+        detail: songHashId || null
+      })
+      window.dispatchEvent(event)
+    },
     doPlay () {
       this.audio.pause()
       this.isSeek = true
@@ -173,14 +184,20 @@ export default {
     doPause () {
       let song = this.currentSong
       if (!song.songId) return this.playCtrl(1)
-      this.isPlaying ? this.audio.pause() : this.audio.play()
+      if (this.isPlaying) {
+        this.audio.pause()
+        this.dispatchEvent('')
+      } else {
+        this.audio.play()
+        this.dispatchEvent(`${song.source}_${song.songId}`)
+      }
     },
     openLyric () {
       this.$store.commit('showLyric', this.showLyric === false)
     },
     changeMode () {
       this.playMode += 1
-      this.playMode > 3 ? this.playMode = 1 : null
+      if (this.playMode > 3) this.playMode = 1
     },
     doUpvote () {
       let song = this.currentSong

@@ -63,9 +63,8 @@ export default {
     }
   },
   created () {
-    let pl = {}
-    pl.addTo = this.addToPlay
-    window.pl = pl
+    window.pl = window.pl || {}
+    window.pl.addTo = this.addToPlay
   },
   methods: {
     songListScroll (e) {
@@ -100,15 +99,18 @@ export default {
       }
     },
     playThisSong (item, isPlayNow) {
-      if (item.songId === this.currentSong.songId) return
+      if (item.songId == this.currentSong.songId && item.source == this.currentSong.source) return
       if (this.activeTab === 0) {
         this.$store.commit('playThisSong', item)
       } else {
         this.addToPlay(item, isPlayNow)
       }
     },
-    addToPlay (item, isPlayNow) {
-      if (item.songId === this.currentSong.songId) return
+    addToPlay (item, isPlayNow, isRemote) {
+      if (item.songId == this.currentSong.songId && item.source == this.currentSong.source) {
+        if (isRemote) window.pl.doPause()
+        return
+      }
       let songIndex = -1
       let playList = this.playList
       for (let index = 0; index < playList.length; index++) {

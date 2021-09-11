@@ -3,6 +3,7 @@ import store from './store'
 import mPlayer from './App'
 import Qs from 'qs'
 import axios from 'axios'
+import './untils/playerTool'
 
 let playerDiv = document.createElement('div')
 playerDiv.setAttribute('id', 'mplayer')
@@ -18,9 +19,8 @@ Vue.prototype.$axios = axios.create({
 })
 
 /* eslint-disable no-new */
-var mplayer = new Vue({
+new Vue({
   el: '#mplayer',
   store,
   render: h => h(mPlayer)
 })
-
