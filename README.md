@@ -17,14 +17,6 @@ http://dodododooo.com
 ![歌词界面](https://github.com/dodododooo/mPlayer2/blob/master/images/lrc.png)
 
 ### 使用方法
-----
-**页面引用**
-
- 编译后引入相关js, css文件即可
-
- **免编译远程调用**
-
- 页面直接引用远程js,css文件
  ```html
 <html>
   <head>
