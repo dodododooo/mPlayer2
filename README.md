@@ -3,7 +3,7 @@ mPlayer2
 ---
 ### A web music player based on VUE and IndexedDB
 
-mPlayer2是基于mPlayer全新升级版的web端音乐播放器，在mPlayer (http://dodododooo.com/#/post?postId=2) 的基础上代码全部重构，重新规划了界面布局，前端采用VUE+IndexedDB，增加了歌曲收藏列表和在线搜索功能，歌词显示以独立界面显示，保留并兼容mPlayer的全局调用接口，可实现web端独立的音乐播放器功能和页面歌曲播放功能；后端全部切换到  ``` Meting ```，升级更加快捷方便，是一款全功能的web端音乐播放器。
+mPlayer2是基于mPlayer全新升级版的web端音乐播放器，在mPlayer的基础上代码全部重构，重新规划了界面布局，前端采用VUE+IndexedDB，增加了歌曲收藏列表和在线搜索功能，歌词显示以独立界面显示，保留并兼容mPlayer的全局调用接口，可实现web端独立的音乐播放器功能和页面歌曲播放功能；后端全部切换到  ``` Meting ```，升级更加快捷方便，是一款全功能的web端音乐播放器。
 
 
 ### 演示地址
@@ -32,13 +32,13 @@ http://dodododooo.com/#/music
 
  ``` <meta charset="UTF-8"> ```
 
- ``` <link rel=stylesheet type=text/css href="http://dodododooo.com/mplayer2/remote/css/app-mplayer.css"></link> ```
+ ``` <link rel=stylesheet type=text/css href="https://dodododooo.com/mplayer2/remote/css/app-mplayer.css"></link> ```
  
  ``` </head> ```
 
  ``` <body> ```
 
- ``` <script type=text/javascript src=http://dodododooo.com/mplayer2/remote/js/app-mplayer.js></script> ```
+ ``` <script type=text/javascript src=https://dodododooo.com/mplayer2/remote/js/app-mplayer.js></script> ```
  
  ``` </body> ```
  
@@ -53,16 +53,23 @@ http://dodododooo.com/#/music
 
 参数2：  ```isPlay //true 添加并播放，false 添加到列表```
 
+```
+2021-09-11 更新  
+新增页面音乐卡片
+  使用方法： 
+    1，音乐列表右键复制音乐信息, 得到音乐信息，如：XXXXX 
+    2，在页面中插入页面卡片 <div class="m-mplayer-music" data-music="XXXXX"></div>
+删除百度虾米音源，删除推荐歌曲列表
+LastFM 更新为每5分钟更新一次
+```
+
 ### 浏览器支持
 支持 Chrome、firefox、Edge 等现代浏览器，IE浏览器下背景图片滤镜功能未作兼容。
 
 ### LastFM scrobble
-记录歌曲播放记录到LastFM, 每小时同步一次
+记录歌曲播放记录到LastFM, 每5分钟同步一次
 
 查看地址： https://www.last.fm/zh/user/dodododooo
-
-### 鸣谢
-（厚颜无耻地）特别感谢 @metowolf、网易云音乐、QQ音乐、虾米、酷狗、百度音乐的大力支持！！！！
 
 ### 链接
 Meting：全功能平台音乐 API PHP框架 https://github.com/metowolf/Meting
