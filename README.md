@@ -7,7 +7,7 @@ mPlayer2是基于mPlayer全新升级版的web端音乐播放器，在mPlayer的�
 
 
 ### 演示地址
-http://dodododooo.com/#/music
+http://dodododooo.com
 
 ### 界面预览
 ![列表界面](https://github.com/dodododooo/mPlayer2/blob/master/images/playlist.png)
@@ -40,7 +40,6 @@ http://dodododooo.com/#/music
 ```javascript
 pl.addTo($.parseJSON(songObject),isPlay) //添加歌曲到列表
 // 参数1： songObject = {songId: 1773698125, songTitle: "定西", artist: "李志", urlId: 1773698125, album: "1701", lyricId: 1773698125, songImg: 1773698125, source: 'xiami'}
-
 // 参数2： isPlay //true 添加并播放，false 添加到列表
 
 ```
