@@ -1,6 +1,8 @@
 mPlayer2
 ========
 ---
+# 声明
+# 本插件仅供个人学习研究使用，请勿作为各种商业用户，音乐版权归各音乐平台所有。
 ### A web music player based on VUE and IndexedDB
 
 mPlayer2是基于mPlayer全新升级版的web端音乐播放器，在mPlayer的基础上代码全部重构，重新规划了界面布局，前端采用VUE+IndexedDB，增加了歌曲收藏列表和在线搜索功能，歌词显示以独立界面显示，保留并兼容mPlayer的全局调用接口，可实现web端独立的音乐播放器功能和页面歌曲播放功能；后端全部切换到  ``` Meting ```，升级更加快捷方便，是一款全功能的web端音乐播放器。
