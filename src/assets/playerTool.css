@@ -1,0 +1,96 @@
+.m-mplayer-music * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.m-mplayer-music {
+  display: none;
+  width: 429px;
+  flex-direction: row;
+  margin: 30px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px 5px #ccc;
+  font-family: -apple-system, BlinkMacSystemFont, '微软雅黑';
+}
+.m-mplayer-music .m-music-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: url('https://dodododooo.com/mplayer2/logo.jpg');
+  background-position: center;
+  background-size: cover;
+  filter: blur(50px);
+  transition: background-image 300ms ease-out;
+  z-index: 999;
+}
+.m-mplayer-music .m-music-img {
+  height: 89px;
+  width: 89px;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  flex-shrink: 0;
+  margin: 0;
+}
+.m-mplayer-music .m-music-info {
+  display: flex;
+  flex: 1;
+  padding: 10px 10px;
+  z-index: 9999;
+  color: white;
+  background-color: rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+.m-mplayer-music[data-current=true] .m-music-info {
+  background-image: url('https://dodododooo.com/mplayer2/index.svg');
+}
+.m-mplayer-music .m-music-info .m-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  line-height: 1;
+}
+.m-mplayer-music .m-music-info .m-artist {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.m-mplayer-music .m-music-info .m-album {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.m-mplayer-music .m-music-play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+.m-mplayer-music .m-music-play-icon {
+  display: block;
+  height: 48px;
+  width: 48px;
+  line-height: 48px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 100;
+  font-size: 36px;
+}
+.m-mplayer-music[data-current=true] .m-music-play-icon.icon-play {
+  display: none;
+}
+.m-mplayer-music .m-music-play-icon.icon-pause {
+  display: none;
+}
+.m-mplayer-music[data-current=true] .m-music-play-icon.icon-pause {
+  display: block;
+}
