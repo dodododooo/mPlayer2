@@ -9,7 +9,7 @@ mPlayer2是基于mPlayer全新升级版的web端音乐播放器，在mPlayer的�
 
 
 ### 演示地址
-http://dodododooo.com
+[演示地址](https://dodododooo.com/2021/11/29/music.html#mplayer2-%E6%BC%94%E7%A4%BA)
 
 ### 界面预览
 ![列表界面](https://github.com/dodododooo/mPlayer2/blob/master/images/playlist.png)
