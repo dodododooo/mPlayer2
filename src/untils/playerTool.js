@@ -38,7 +38,7 @@ MPlayer.prototype = {
       let timer = setInterval(() => {
         i++;
         m_element = document.getElementsByClassName('m-mplayer-music');
-        if (m_element || i > 20) {
+        if (m_element.length > 0 || i > 20) {
           clearInterval(timer);
           resolve(m_element);
           return;
